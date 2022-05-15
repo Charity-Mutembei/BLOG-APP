@@ -4,6 +4,14 @@
     <form class="bar" style="width: 60cm; margin-left: 20%; margin-right: 20%;">
       <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="border-radius: 3cm; background-color: white; color: black;">
     </form>
-    <button style="background-color: white; color: black; width: 10cm; margin-right: 10%; border-radius: 3cm;">Login</button>
+    <!-- <button style="background-color: white; color: black; width: 10cm; margin-right: 10%; border-radius: 3cm;">Login</button> -->
+    <ul class="nav navbar-nav navbar-right">
+      {% if current_user.is_authenticated %}
+      <li style="color:white;padding:15px;">{{current_user.username}}</li>
+      <li><a href="{{url_for('auth.logout')}}" style="border: 1px solid white; margin-left: -20%; border-radius: 3cm; ">Sign out</a></li>
+      {% else %}
+      <li> <button style="margin-left: -40%; border-radius: 3cm; width: 4cm; height: 1cm; "><a href="{{url_for('auth.login')}}" >Login</a></button></li>
+      {%endif%}
+    </ul>
   </div>
 </nav>
