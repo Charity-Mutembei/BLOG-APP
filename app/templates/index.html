@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title> {{ title }}</title>
+        {% else %}
+        <title> Welcome to the best Movie Review website </title>
+        {% endif %}
+    </head>
+   
+    <body>
+        {%block content%}
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img src="/app/static/Second Renaissance By Uma Damle - IGNANT.jpeg" alt="" style="height: 20cm;">
+                </div>
+                <div class="col" style="margin-top: 18%;">
+                    <h1 style="font-size: 2cm; color: white; margin-left: -40%;">WRITE YOUR HEART OUT</h1>
+                    <button style="border-radius: 3cm; height: 1cm; background-color: white; color: black; width: 4cm; margin-top: 2%; margin-left: 5%;">Signup</button>
+                </div>
+            </div>
+        </div>
+
+        {%endblock%}
+
+    </body>
+   
+</html>
+
