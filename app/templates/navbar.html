@@ -7,6 +7,8 @@
     <!-- <button style="background-color: white; color: black; width: 10cm; margin-right: 10%; border-radius: 3cm;">Login</button> -->
     <ul class="nav navbar-nav navbar-right">
       {% if current_user.is_authenticated %}
+
+      <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
       <li style="color:white;padding:15px;">{{current_user.username}}</li>
       <li><a href="{{url_for('auth.logout')}}" style="border: 1px solid white; margin-left: -20%; border-radius: 3cm; ">Sign out</a></li>
       {% else %}
