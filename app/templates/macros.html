@@ -6,16 +6,14 @@
 <div class="container">
      {% if blogs %}
     {%for blog in blogs%}
-    <div class="card mb-3" style="height: 10cm;">
+    <div class="car" style="height: 10cm;">
         <div class="row g-0">
           <div class="col-md-4" style="border-top-left-radius: 3cm;">
-            <img src="/app/static/6eeefc34618f678d384968.gif" class="img-fluid rounded-start" alt="..." style="height: 10cm; border-radius: 3cm;">
+            <img src="/app/static/6eeefc34618f678d384968.gif" class="img-fluid rounded-start" alt="..." style="height: 10cm; border-radius: 50%; width: 10cm;">
           </div>
-          <div class="col-md-8">
-            <div class="card-body">
+          <div class="col" style="color: white;">
               <h5 class="card-title">Author: {{blog.blogger_name}}</h5>
-              <p class="card-text">Message: {{blog.blog_context}}</p>
-            </div>
+              <p class="card-text">Message: <br> {{blog.blog_context}}</p>
           </div>
         </div>
       </div>
