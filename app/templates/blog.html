@@ -1,2 +1,12 @@
 {% extends 'base.html'%}
-
+{% import 'macros.html' as macro %}
+{% block content%}
+ <div class="container">
+     
+    <div class="tab-content">
+      <div  class="container tab-pane active" id="all"><br>
+          {{ macro.displayBlogs(blogs) }}
+      </div>
+  </div>
+  </div>
+  {% endblock%}

@@ -1,6 +1,6 @@
 from . import db, login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
-from flask_login import UserMixin 
+from flask_login import UserMixin, current_user
 from datetime import datetime
 
 
@@ -39,23 +39,37 @@ class User(UserMixin, db.Model):
 class Blog(db.Model):
     __tablename__ = 'blogs'
 
+    all_blogs = []
+
     id = db.Column(db.Integer,primary_key = True)
     blog_id = db.Column(db.Integer)
     blog_title = db.Column(db.String)
     image_path = db.Column(db.String)
-    blog_review = db.Column(db.String)
+    blog_title = db.Column(db.String)
+    blogger_name = db.Column (db.String)
+    blog_context = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
 
     def save_blog(self):
         db.session.add(self)
-        db.session.commit(self)
+        db.session.commit()
+
+        Blog.all_blogs.append(self)
 
     @classmethod
     def get_blogs(cls,id):
-        blogs = Blog.query.filter_by(user_id = id).all()
-        return blogs 
+
+        response = []
+         
+        for blog in cls.all_blogs:
+            if blog.user_id == id:
+                response.append(blog)
+
+
+    def __repr__(self):
+        return f'Blog{self.blog_title}'
 
 
   

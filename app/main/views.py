@@ -1,3 +1,4 @@
+from email import message
 from flask import render_template,request,redirect,url_for, abort
 from . import main
 from flask_login import login_required, current_user
@@ -66,33 +67,37 @@ def update_pic(uname):
 
 
 
+
+
+@main.route ('/blog/new', methods = ['GET', 'POST'])
+@login_required
+def new_blog():
+    form = BlogForm()
+    if form.validate_on_submit ():
+        blogger_name = form.name.data
+        blog_context = form.message.data
+
+        #update review instance
+        new_blog = Blog(blogger_name = blogger_name, blog_context= blog_context)
+
+
+        #save review methods
+        new_blog.save_blog()
+        return redirect (url_for('main.blog'))
+
+    else: all_blogs = Blog.query.order_by(Blog.posted).all
+
+
+    return render_template('new_blog.html',blog_form = form, blogs = all_blogs)  
+
 @main.route('/blog', methods= ['GET','POST'])
 @login_required
 def blog ():
     '''
     displays the written stories of all, after the click 'ReadMore' on the snippet tab.
     '''
+    blogs = Blog.query.all()
 
-    return render_template ('blog.html')
-
-@main.route ('/blog/new/<int:id>', methods = ['GET', 'POST'])
-@login_required
-def new_blog():
-    form = BlogForm()
-    if form.validate_on_submit ():
-        title = form.title.data
-        blog = form.blog.data
-
-        #update review instance
-        new_blog = Blog(blog_title = title, blog = blog, user = current_user )
-
-
-        #save review methods
-        new_blog.save_blog()
-        return redirect (url_for('.blog'))
-
-
-    title = f'{blog.title} blog'
-    return render_template('new_blog.html', title = title, blog_form = form, blog = blog)    
+    return render_template ('blog.html', blogs = blogs)  
         
 

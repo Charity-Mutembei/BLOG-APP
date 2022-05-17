@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+{% macro displayBlogs(blogs)%}
+
+
+
+<div class="container">
+     {% if blogs %}
+    {%for blog in blogs%}
+    <div class="card mb-3" style="height: 10cm;">
+        <div class="row g-0">
+          <div class="col-md-4" style="border-top-left-radius: 3cm;">
+            <img src="/app/static/6eeefc34618f678d384968.gif" class="img-fluid rounded-start" alt="..." style="height: 10cm; border-radius: 3cm;">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{blog.blogger_name}}</h5>
+              <p class="card-text">{{blog.blog_context}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% endfor %}
+    {% else %}
+    <div class="card w-90 mb-3">
+        <div class="card-body">
+
+            <p class="card-title">Category Has 0 posts</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endmacro %}
+
+</div>
+

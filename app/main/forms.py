@@ -13,3 +13,4 @@ class UpdateProfile(FlaskForm):
 class BlogForm (FlaskForm):
     name = TextAreaField('Your name', validators=[DataRequired()])
     message = TextAreaField (validators=[DataRequired()])
+    submit = SubmitField('Submit')
