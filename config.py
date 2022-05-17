@@ -1,6 +1,7 @@
 import os
 
 class Config:
+    UPLOADED_PHOTOS_DEST = '/app/static/photos'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://charity:naturelove@localhost/charity'
     SQLALCHEMY_TRACK_MODIFICATIONS=True
     SECRET_KEY= 'charity'
@@ -14,10 +15,18 @@ class Config:
 class ProdConfig(Config):
    pass
 
+class TestConfig(Config):
+     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://charity:naturelove@localhost/charity_test'
+
 class DevConfig(Config):
+
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://charity:naturelove@localhost/charity'
+
+
     DEBUG = True
 
 config_options = {
     'development':DevConfig,
-    'production':ProdConfig
+    'production':ProdConfig,
+    'test':TestConfig
 }

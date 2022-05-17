@@ -3,7 +3,10 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from config import config_options, DevConfig 
 from flask_login import LoginManager
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 
+
+photos = UploadSet('photos', IMAGES)
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 
@@ -14,6 +17,10 @@ login_manager.login_view = 'auth.login'
 def create_app(config_name):
 
     app = Flask(__name__, static_url_path='/app/static/')
+    app.config['UPLOADED_PHOTOS_DEST'] =  '/app/static/photos/'
+
+    #configure uploadset
+    configure_uploads(app, photos)
 
     #authentication
     from .auth import auth as auth_blueprint
