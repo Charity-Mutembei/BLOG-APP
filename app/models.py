@@ -72,4 +72,10 @@ class Blog(db.Model):
         return f'Blog{self.blog_title}'
 
 
+class Quote:
+    def __init__(self, author, quote):
+        self.author = author
+        self.quote = quote
+
+
   
