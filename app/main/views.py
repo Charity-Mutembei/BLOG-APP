@@ -87,7 +87,6 @@ def new_blog():
     return render_template('new_blog.html',blog_form = form, blogs = all_blogs)  
 
 @main.route('/blog', methods= ['GET','POST'])
-@login_required
 def blog ():
     '''
     displays the written stories of all, after the click 'ReadMore' on the snippet tab.
