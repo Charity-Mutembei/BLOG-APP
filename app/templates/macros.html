@@ -6,16 +6,18 @@
 <div class="container">
      {% if blogs %}
     {%for blog in blogs%}
-    <div class="car" style="height: 10cm;">
+    <div class="card" style="height: 10cm; padding: 1%; ">
         <div class="row g-0">
-          <div class="col-md-4" style="border-top-left-radius: 3cm;">
-            <img src="/app/static/6eeefc34618f678d384968.gif" class="img-fluid rounded-start" alt="..." style="height: 10cm; border-radius: 50%; width: 10cm;">
-            <img src="/app/static/icons/comment.png" alt="" style="background-color: white; width: 1cm; height: 1cm; margin-top: 10%;  ">
+          <div class="col">
+            <img src="/app/static/6eeefc34618f678d384968.gif" class="img-fluid rounded-start" alt="..." style="height: 9cm; border-radius: 50%; width: 10cm;">
+            
           </div>
-          <div class="col" style="color: white;">
-              <h5 class="card-title">Author: {{blog.blogger_name}}</h5>
-              <p class="card-text">Message: <br> {{blog.blog_context}}</p>
+          <div class="col" style="color:black;">
+              <h5 class="card-title"> <strong>Author:</strong>  {{blog.blogger_name}}</h5>
+              <p class="card-text"> <br> "{{blog.blog_context}}"</p>
           </div>
+
+          <img src="/app/static/icons/comment.png" alt="" style="background-color: white; width: 1cm; height: 1cm; margin-top: 10%;  ">
         </div>
       </div>
 
@@ -29,6 +31,13 @@
     </div>
     {% endif %}
 </div>
+
+
+
+
+
+
+
 </div>
 {% endmacro %}
 
