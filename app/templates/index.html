@@ -15,36 +15,28 @@
     <body >
         {%block content%}
 
-        <div class="container">
+        <div class="call">
             <div class="row">
                 <div class="col">
-                    <img src="/app/static/Second Renaissance By Uma Damle - IGNANT.jpeg" alt="" style="height: 20cm;">
+                    <img src="/app/static/mod7.jpg" alt="">
                 </div>
-                <div class="col" style="margin-top: 18%;">
-                    <h1 style="font-size: 2cm; color: white; margin-left: -40%;">WRITE YOUR HEART OUT</h1>
-
-                    <!-- quotes  -->
-
+                
+                <div class="col" style="margin-top: 10%;">  
+                    <p style="font-size: 2cm; font-weight: 900;">EXPLORE INTO YOUR MIND</p>  
                     
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        
-                        {% for get_quote in quotes %}
-
-
-                        <div class="card-header">{{get_quote.author}}</div>
+                    <a href="/blog" style="color: black; font-size: 0.8cm; font-weight: 700; margin-left: 25% ">explore</a>
+                                     
+                </div>
+                <div>
+                    <div class="card border-dark mb-3">
+                        <div class="card-header">Author: {{displays.author}}</div>
                         <div class="card-body text-dark">
-                          <p class="card-text">{{get_quote.quote}}</p>
+                          <p class="card-text">{{displays.quote}}</p>
                         </div>
-
-                        {% endfor %}
-
-
-                      </div>
-                   
+                    </div> 
                 </div>
             </div>
         </div>
-
         {%endblock%}
 
     </body>

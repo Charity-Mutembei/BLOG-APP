@@ -5,8 +5,7 @@ from flask_login import login_required, current_user
 from ..models import Blog, User
 from .forms import UpdateProfile, BlogForm
 from .. import db, photos
-from ..requests import get_quote
-
+from ..requests import quotes
 # Views
 @main.route('/')
 def index():
@@ -15,16 +14,10 @@ def index():
     View root page function that returns the index page and its data
     '''
 
-    quotes = get_quote()
-    return render_template('index.html', quotes = quotes )
+    displays = quotes()
 
-@main.route('/snippet')
-def snippet():
 
-    '''
-    View root page function that returns the index page and its data
-    '''
-    return render_template('snippet.html')
+    return render_template('index.html', displays = displays )
 
 
 @main.route('/user/<uname>')
