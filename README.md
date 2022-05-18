@@ -136,6 +136,7 @@ Then type
 ## Known-Bugs
 
 The application is yet to be launched to Heroku.However, the link to the blog is unresponsive, the navbar cannot display the signin and signout option due to constant crashing of the code. 
+The roles of users and writers are defined but yet to to complete the user stories/needs as requested. 
 
 ## Contact information
 
