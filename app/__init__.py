@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-from config import config_options, DevConfig 
+from config import config_options, DevConfig
+from flask_mail import Mail
 from flask_login import LoginManager
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 
@@ -9,6 +10,7 @@ from flask_uploads import UploadSet, configure_uploads, IMAGES
 photos = UploadSet('photos', IMAGES)
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+mail = Mail()
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -33,6 +35,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
+    mail.init_app(app)
 
     # Will add the views and forms
      # Registering the blueprint

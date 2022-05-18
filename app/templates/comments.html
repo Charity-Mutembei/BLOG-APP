@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro %}
+{% block content%}
+ <div class="container">
+    <div>
+      <p> New here? <a href="{{url_for('auth.register')}}">Sign up here</a></p>
+      <p> Have an account? <a href="{{url_for('main.new_blog')}}">Write a blog</a></p>
+
+
+    </div>
+     
+    <div class="tab-content">
+      <div  class="container tab-pane active" id="all"><br>
+          {{ macro.displayComments(comments) }}
+      </div>
+  </div>
+  </div>
+  {% endblock%}

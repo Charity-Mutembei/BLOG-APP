@@ -17,6 +17,9 @@ class User(UserMixin, db.Model):
     profile_pic_path= db.Column(db.String())
     password_secure = db.Column(db.String(255))
     blogs = db.relationship('Blog',backref = 'user',lazy = "dynamic")
+    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    comments = db.relationship('Comment',backref = 'user',lazy = "dynamic")
+
     
 
     @property
@@ -34,6 +37,40 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f'user{self.username}'
+
+
+class Role(db.Model):
+    __tablename__ = 'roles'
+
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255))
+    users = db.relationship('User',backref = 'role',lazy="dynamic")
+
+
+    def __repr__(self):
+        return f'User {self.name}'
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    all_comments = []
+
+    id = db.Column(db.Integer,primary_key = True)
+    commenter_name = db.Column (db.String)
+    blog_review = db.Column(db.String)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls,id):
+        comments = Comment.query.filter_by(user_id=id).all()
+        return comments
+
+
 
 
 class Blog(db.Model):
@@ -77,6 +114,6 @@ class Quote:
     def __init__(self, author, quote):
         self.author = author
         self.quote = quote
-
+    
 
   

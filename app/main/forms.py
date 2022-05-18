@@ -14,3 +14,8 @@ class BlogForm (FlaskForm):
     name = TextAreaField('Your name', validators=[DataRequired()])
     message = TextAreaField (validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class CommentForm (FlaskForm):
+    name = TextAreaField('Your name', validators=[DataRequired()])
+    comment = TextAreaField (validators=[DataRequired()])
+    submit = SubmitField('Submit')

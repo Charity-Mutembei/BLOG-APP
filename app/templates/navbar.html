@@ -18,20 +18,7 @@
           </li>
         
         
-          {% if current_user.is_authenticated %}
-          <li style="margin-left: 90%; margin-top: 3%; font-size: larger;"><strong>Hello {{current_user.username}}</strong></li>
-
-
-          <div class="row" style="margin-left: 50%; margin-top: 3%;">
-            <div class="col">
-              <li><a href="{{url_for('auth.logout')}}" style="color: black; font-weight: 900; ">Signout</a></li>
-            </div>
-          </div> 
-          
-          {% else %}
-          <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
-          
-          {%endif%}
+        
         </ul>
       </div>
     </div>

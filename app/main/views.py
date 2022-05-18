@@ -2,8 +2,8 @@ from email import message
 from flask import render_template,request,redirect,url_for, abort
 from . import main
 from flask_login import login_required, current_user
-from ..models import Blog, User
-from .forms import UpdateProfile, BlogForm
+from ..models import Blog, User, Comment
+from .forms import UpdateProfile, BlogForm, CommentForm
 from .. import db, photos
 from ..requests import quotes
 # Views
@@ -46,7 +46,7 @@ def update_profile(uname):
         db.session.add(user)
         db.session.commit()
 
-        return redirect(url_for('.profile',uname=user.username))
+        return redirect(url_for('.profile',uname=user.username, user = user))
 
     return render_template('profile/update.html',form =form)
 
@@ -59,7 +59,7 @@ def update_pic(uname):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile',uname=uname))
+    return redirect(url_for('main.profile',uname=uname, user = user))
 
 
 
@@ -94,5 +94,43 @@ def blog ():
     blogs = Blog.query.all()
 
     return render_template ('blog.html', blogs = blogs)  
+
+@main.route('/comment', methods= ['GET','POST'])
+@login_required
+def comment ():
+    '''
+    displays the written stories of all, after the click 'ReadMore' on the snippet tab.
+    '''
+
+    form = CommentForm()
+    if form.validate_on_submit():
+        commenter_name = form.name.data
+        blog_review = form.comment.data
+
+        new_comment = Comment(blog_review=blog_review, commenter_name = commenter_name)
+
+    
+        new_comment.save_comment()
+        return redirect(url_for('main.comments'))
+    
+    else: all_comments = Comment.query.order_by(Comment.posted).all
+
+
+    
+
+
+
+    return render_template('comment.html',comment_form=form, all_comments=all_comments )
+
+@main.route('/comments', methods= ['GET','POST'])
+def comments ():
+    '''
+    displays the comments on the written stories of all, after the click 'Comment' on the snippet tab.
+    '''
+
+    comments = Comment.query.all()
+
+    return render_template ('comments.html',comments = comments)  
+
         
 
