@@ -21,16 +21,13 @@ Update or delete blogs created.
 [Click here for Design in Figma](https://www.figma.com/file/DufPeR45G6iLdMajXFggHt/WritersHub.Com)
 
 Landing Page
-![image description](app/static/Untitled%20(8).png)
+![image description](app/static/land.png)
 
-Snippet page
-![image description](app/static/Untitled%20(9).png)
-
-Blog Page
-![image description](app/static/Untitled%20(10).png)
+Blog page
+![image description](app/static/blog.png)
 
 Comment Page
-![image description](app/static/Untitled%20(11).png)
+![image description](app/static/comment.png)
 
 
 
